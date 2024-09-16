@@ -15,7 +15,9 @@ jobs:
       NAMESPACE: navlisdata
 
     permissions:
+      packages: write
       contents: read
+      attestations: write
       id-token: write  # permission to get the OIDC-Tokens
 
     steps:
