@@ -79,4 +79,4 @@ jobs:
           git config --global user.name "github-actions"
           git add helm/${{ env.CHART_NAME }}/values.yaml
           git commit -m "Replaced latest image and created new image version with tag ${{ env.sha_short }}"
-          git push origin ${{ github.ref }}
+          git push
