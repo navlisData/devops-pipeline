@@ -14,6 +14,7 @@ jobs:
       REGISTRY: docker.io
       IMAGE_REPOSITORY: nginx-hello-world
       NAMESPACE: navlisdata
+      CHART_NAME: hello-world
 
     permissions:
       packages: write
@@ -68,12 +69,12 @@ jobs:
         # Searches with streamEditor (sed) with -i (in place -> no new file should be created)
         # Substitute | Searches for line, which starts with "tag:" | replacement for this line
         run: |
-          sed -i 's|tag: .*|tag: "'${{ env.sha_short }}'"|' helm/hello-world/values.yaml
+          sed -i 's|tag: .*|tag: "'${{ env.sha_short }}'"|' helm/${{ env.CHART_NAME }}/values.yaml
 
       - name: Commit and Push Changes
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-          git add helm/chart-name/values.yaml
+          git add helm/${{ env.CHART_NAME }}/values.yaml
           git commit -m "Replaced latest image and created new image version with tag ${{ env.sha_short }}"
           git push origin ${{ github.ref }}
