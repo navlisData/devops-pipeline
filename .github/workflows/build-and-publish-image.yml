@@ -14,6 +14,10 @@ jobs:
       IMAGE_REPOSITORY: nginx-hello-world
       NAMESPACE: navlisdata
 
+    permissions:
+      contents: read
+      id-token: write  # permission to get the OIDC-Tokens
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
